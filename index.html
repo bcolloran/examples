@@ -50,7 +50,7 @@
         display: grid;
         /* height:100%; */
         margin: 0px;
-        margin-top: 45px;
+        margin-top: 15px;
       }
 
       .description {
@@ -100,18 +100,9 @@
         font-variant: normal;
         font-weight: 100;
         color: #666666;
-        margin-top: 30px;
+        margin-top: 38px;
+        margin-bottom: -21px;
       }
-      /* 
-      .grid-left {
-        grid-column-start: 2;
-        grid-column-end: 4;
-      } */
-
-      /* .grid-right {
-        grid-column-start: 3;
-        grid-column-end: 5;
-      } */
 
       .impact {
         font-weight: 600;
@@ -133,23 +124,6 @@
         margin-left: -100px;
         background-repeat: no-repeat;
       }
-      /* 
-      .image-right {
-        grid-column-start: 4;
-        grid-column-end: 6;
-        overflow: hidden;
-      } */
-
-      /* .image-background-right {
-        height: calc(100% - 62px);
-        background-position: left center;
-        margin-top: 39px;
-        border: 1px solid #b9e9ed;
-        margin-left: 105px;
-        margin-bottom: 40px;
-        margin-right: -100px;
-        background-repeat: no-repeat;
-      } */
 
       .tab-inner-grid-container {
         display: grid;
@@ -226,20 +200,55 @@
         </div>
       </div>
 
+      <div class="inner-grid-container" id="tabs-2">
+        <div class="description">
+          <h4>ABOUT ME</h4>
+          <p>
+            I’m a data scientist and data storyteller, an engineering
+            generalist, and creator of the data science and viz platform
+            <a
+              href="https://hacks.mozilla.org/2019/03/iodide-an-experimental-tool-for-scientific-communicatiodide-for-scientific-communication-exploration-on-the-web/"
+              >Iodide</a
+            >. I have a wide range of technical and quantitative skills, but in
+            addition to executing on technical challenges, I have a track record
+            of zooming out to clarify how quantitative understanding can solve
+            real business problems; of identifying opportunities and
+            implementing solutions that go beyond code and numbers when those
+            tools aren’t enough; and leading teams to solve big problems.
+          </p>
+          <p>
+            For me, the ultimate objective of any visualization is impact.
+            Before I touch any pixels, I focus on understanding the needs of the
+            business, and then on understanding the data. focus is on presenting
+            data as clearly as possible so that the reader will come away with
+            actionable insights inform good decisions.
+          </p>
+        </div>
+      </div>
+
       <div id="tabs">
         <ul class="tab-inner-grid-container">
           <li>
-            <a href="#tabs-2"
+            <a href="#tabs-iodide"
               ><img
-                src="screenshots/adu_static.png"
+                src="screenshots/iodide_static.png"
+                style="position: relative; top: -57px; left: -5px; width: 103%"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#tabs-6"
+              ><img
+                src="screenshots/lorenz.png"
                 style="
-                  height: 207px;
+                  height: 300px;
                   position: relative;
-                  left: -16px;
-                  top: -23px;
+                  left: -65px;
+                  top: -43px;
                 "
             /></a>
           </li>
+
           <li>
             <a href="#tabs-3"
               ><img
@@ -249,6 +258,19 @@
                   position: relative;
                   left: -49px;
                   top: -142px;
+                "
+            /></a>
+          </li>
+
+          <li>
+            <a href="#tabs-2"
+              ><img
+                src="screenshots/adu_static.png"
+                style="
+                  height: 207px;
+                  position: relative;
+                  left: -16px;
+                  top: -23px;
                 "
             /></a>
           </li>
@@ -273,26 +295,6 @@
                   width: 478px;
                 "
             /></a>
-          </li>
-          <li>
-            <a href="#tabs-6"
-              ><img
-                src="screenshots/lorenz.png"
-                style="
-                  height: 300px;
-                  position: relative;
-                  left: -65px;
-                  top: -43px;
-                "
-            /></a>
-          </li>
-          <li>
-            <a href="#tabs-iodide"
-              ><img
-                src="screenshots/iodide_static.png"
-                style="position: relative; top: -57px; left: -5px; width: 103%"
-              />
-            </a>
           </li>
         </ul>
 
