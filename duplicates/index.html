@@ -90,18 +90,24 @@
           data-parent="#accordion"
           href="#collapseTrend"
           comp-key="trend"
+          onclick="javascript:loadData('data/numRecs16_partIdp11.txt')"
         >
           Overview
         </h4>
         <div class="panel-body">
           <p>
             If our data collection system were working as intended, our database
-            would only ever contain a
-            <strong>single data submission</strong> per each installed instance
-            of our software. Unfortunately, that is not the case. This
-            visualization depicts overlapping data from multiple data
-            submissions sent by a single software installation, and which all
-            remain present in our database.
+            would only ever contain
+            <strong><em>a single data submission</em></strong> per each
+            installed instance of our software. Unfortunately, that is not the
+            case.
+          </p>
+          <p>
+            This visualization presents data from a single database query, and
+            shows that our database not only contains multiple submissions sent
+            by a single software installation, but that the level of duplication
+            is very high. More troubling, this visualization reveals a number of
+            new anomalies that were previously unrecognized.
           </p>
         </div>
 
@@ -111,21 +117,22 @@
           data-parent="#accordion"
           href="#collapseTrend"
           comp-key="trend"
+          onclick="javascript:loadData('data/numRecs16_partIdp11.txt')"
         >
           Understanding this visualization
         </h4>
         <div class="panel-body">
           <p>
-            Each data submission is shown as an individual timeline. Each
-            colored block on the timeline represents a day on which activity was
-            recorded. The color of each block is uniquely determined by the data
-            from that day, so identically colored blocks indicate days with
-            identical data.
+            Each data submission in our database is shown as an individual
+            timeline. Each colored block on the timeline represents a day on
+            which activity was recorded. The color of each block is uniquely
+            determined by the data from that day, so identically colored blocks
+            indicate days with identical data.
           </p>
 
           <p>
             Below the individual timelines we show the same submission data
-            merged into a single graph that shows how the histories branch.
+            merged into a single tree that shows how the histories branch.
           </p>
 
           <p>
@@ -141,6 +148,7 @@
           data-parent="#accordion"
           href="#collapseSeasonal"
           comp-key="seasonal"
+          onclick="javascript:loadData('data/numRecs5_partIdp9e.txt')"
         >
           "Standard" duplicates
         </h4>
@@ -169,16 +177,16 @@
           data-parent="#accordion"
           href="#collapseWeekly"
           comp-key="weekly"
+          onclick="javascript:loadData('data/numRecs48_partIdp12.txt')"
         >
           The problem is ongoing
         </h4>
         <div class="panel-body">
-          Note that
+          A patch intended to fix this problem was deployed on 2014-01-07; this
+          data was pulled on 2014-02-03. Unfortunately
           <a href="javascript:loadData('data/numRecs48_partIdp12.txt')"
             >duplicate records are still being submitted</a
-          >. Note that this data was pulled on 2014-02-03, <em>after</em> the
-          2014-01-07 patch was deployed. This unfortunately contradicts our
-          hopes that the problem has been remedied. See also
+          >. See also
           <a href="javascript:loadData('data/numRecs48_partIdp00.txt')"
             >this instance</a
           >, which submitted many records on 2014-01-22, two weeks after the
@@ -191,11 +199,12 @@
           data-parent="#accordion"
           href="#collapseOutlier"
           comp-key="outlier"
+          onclick="javascript:loadData('data/numRecs4_partIdp4f.txt')"
         >
           Profile copying?
         </h4>
         <div class="panel-body">
-          There are a fair number of records that have a pattern of divergence
+          <!-- There are a fair number of records that have a pattern of divergence
           that looks
           <a href="javascript:loadData('data/numRecs4_partIdp4f.txt')">like</a>
           <a href="javascript:loadData('data/numRecs5_partIdp16.txt')"
@@ -207,7 +216,25 @@
           they subsequently branch one or more times. Importantly, the diverging
           histories <em>continue to be updated in parallel</em>. This is a novel
           problem, and dealing with it will require a new approach to ID
-          assignment.
+          assignment. -->
+
+          There are a substantial number of cases in which an installation's
+          data history
+          <a href="javascript:loadData('data/numRecs4_partIdp4f.txt')"
+            >branches</a
+          >
+          on one or
+          <a href="javascript:loadData('data/numRecs5_partIdp16.txt')"
+            >more occasions</a
+          >. Importantly, the diverging histories
+          <em>continue to be updated in parallel</em>, but it should simply not
+          be possible for a single installation to record
+          <a href="javascript:loadData('data/numRecs16_partIdp03.txt')"
+            ><em>multiple</em> daily usage packets for <em>one day</em></a
+          >. This surprising result may indicate unexpected user behavior such
+          as copying software profiles between computers. Overcoming this
+          problem will require us to adopt new approach to ID assignment and
+          handling.
         </div>
 
         <h4
@@ -216,6 +243,7 @@
           data-parent="#accordion"
           href="#collapseNoise"
           comp-key="noise"
+          onclick="javascript:loadData('data/numRecs19_partIdp16.txt')"
         >
           Restore points or deeper errors?
         </h4>
