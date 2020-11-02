@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Do "power users" play MegaFarmTown more often?</title>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="opensans-npm-webfont-master/style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js" integrity="sha512-qoCTmFwBtCPvFhA+WAqatSOrghwpDhFHxwAGh+cppWonXbHA09nG1z5zi4/NGnp8dUhXiVrzA6EnKgJA+fyrpw==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.7.1/jstat.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js" integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww==" crossorigin="anonymous"></script>
+  <script src="data2.js"></script>
+  <script src="nb.js"></script>
+</head>
+
+<body>
+<h1>Do "power users" play MegaFarmTown more often?</h1>
+
+<p>
+We've often wondered whether so-called "power users" with more powerful devices play MegaFarmTown more ofter than users with less powerful devices, and wether we should focus our product and marketing attention on these users. The visualization below gives an overview of MegaFarmTown users across a number of attributes for which we have data, allowing us to answer this and many other questions.
+
+<p>
+At top is a correlation matrix, which summarizes of the relationships between the attibutes. Below that are two scatter plots; the first shows the <em>measured values</em> (excluding the top and bottom .5%), and the second shows the <em>percentile rank</em> of each measurement ordered from lowest observed to highest observed.
+
+<p>
+Hovering over an entry in the correlation matrix will show the numerical value of the corellation for the variables in question; clicking that entry will update the scatter plots.
+
+<div id="heavyUserPlot">
+  (loading plot data)
+  </br></br>
+  <img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif"></img>
+</div>
+
+
+<h1>Key takeaways:</h1>
+
+<p>
+Most measures of usage show a high degree of correlation, as expected. For example <a onclick="mousedownShowDetails('Seconds in game','Games played (total)')"> Seconds in game vs. Games played (total)</a> and <a onclick="mousedownShowDetails('Tournaments (total entered)','Games played (total)')"> Tournaments (total entered) vs. Games played (total)</a> are strongly related. More generally, the high degree of correlation between all the usage variables measured here -- represented by the region of high correlation in the bottom right -- should give us confidence that for most practical purposes, there is essentially one underlying dimension of "game activity".
+
+<p>
+However, we only very weak correlations between activity and hardware quality:
+<ul>
+<li><a onclick="mousedownShowDetails('Seconds in game','Device number of cores')">Seconds in game vs Number of cores</a>
+<li><a onclick="mousedownShowDetails('Seconds in game','Device memory')">Seconds in game vs RAM</a>
+<li><a onclick="mousedownShowDetails('Seconds in game','Device CPU speed')">Seconds in game vs cpu speed</a>
+</ul>
+
+<p>
+While there is a very weak relationship here, the evidence does not support the idea that "power users" or "tech enthusiasts" with powerful devices play more frequently.
+
+  </div>
+</body>
+  <script src="main.js"></script>
+
+</html>

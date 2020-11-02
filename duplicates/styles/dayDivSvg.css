@@ -1,0 +1,57 @@
+rect.dayGraphNode {
+  stroke-width: 0.5px;
+  stroke: #666;
+  opacity: 1;
+}
+
+rect.clicked1.dayGraphNode {
+  stroke-width: 3px;
+  stroke: #71ada3;
+  stroke-opacity: 1;
+}
+
+rect.clicked2.dayGraphNode {
+  stroke-width: 3px;
+  stroke: #ad717b;
+  stroke-opacity: 1;
+}
+
+.tick text {
+  font-size: 10px;
+  stroke: none;
+  font-family: sans-serif;
+}
+
+g.tick line {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 1px;
+}
+
+path.domain {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 1px;
+}
+
+.sessionMarker {
+  fill: #444;
+  stroke: none;
+}
+.currentSession {
+  fill: #d63131;
+  stroke: none;
+}
+
+path.dayGraphEdge {
+  fill: none;
+  stroke: #333;
+  opacity: 0.5;
+  /*stroke-width: 0.5px;*/
+}
+
+/*dayGraphEdge {
+  fill: none;
+  stroke: #ccc;
+  stroke-linecap: butt;
+}*/

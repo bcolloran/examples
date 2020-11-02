@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+    <!-- <script type="text/javascript" src="d3.v3/d3.v3.js"></script>
+  <script type="text/javascript" src="js/date.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script> -->
+
+    <!-- <link href="styles/svgJson.css" rel="stylesheet" /> -->
+    <!-- <link href="styles/rawJsonTable.css" rel="stylesheet" /> -->
+    <!-- <link href="styles/dayDivSvg.css" rel="stylesheet" /> -->
+    <link href="styles/reset_and_base_styles.css" rel="stylesheet" />
+    <!-- <link href="styles/accordion_styles.css" rel="stylesheet" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/opensans-npm-webfont-master/style.css"> -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: Nunito;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        margin-left: 0px;
+        margin-right: 0px;
+
+        grid-template-columns: auto 900px auto;
+        grid-template-rows: auto;
+        /* justify-items: center; */
+        display: grid;
+        overflow-y: scroll;
+      }
+
+      #center-column {
+        grid-column-start: 2;
+      }
+
+      .inner-grid-container {
+        grid-template-columns: 300px 300px 300px;
+        grid-template-rows: auto;
+        /* justify-items: center; */
+        display: grid;
+        /* height:100%; */
+        margin: 0px;
+        margin-top: 45px;
+      }
+
+      .description {
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+
+      h4 {
+        grid-column-start: 2;
+        grid-column-end: 5;
+        color: #37a5ad;
+        font-size: 24px;
+        font-weight: 500;
+        font-variant: small-caps;
+        margin-bottom: 0px;
+        border-bottom: 1px solid #cccccc;
+      }
+
+      .name {
+        font-size: 60px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 100;
+        line-height: 37.4px;
+        color: #37a5ad;
+        margin: -5px;
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+
+      .header-right {
+        float: left;
+        width: 440px;
+      }
+      .header-left {
+        float: right;
+        width: 440px;
+        text-align: right;
+      }
+
+      .full-width-headline {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 100;
+        color: #666666;
+        margin-top: 30px;
+      }
+      /* 
+      .grid-left {
+        grid-column-start: 2;
+        grid-column-end: 4;
+      } */
+
+      /* .grid-right {
+        grid-column-start: 3;
+        grid-column-end: 5;
+      } */
+
+      .impact {
+        font-weight: 600;
+        color: #37a5ad;
+      }
+
+      .image-left {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .image-background-left {
+        height: calc(100% - 62px);
+        background-position: right center;
+        margin-top: 39px;
+        border: 1px solid #b9e9ed;
+        margin-right: 105px;
+        margin-bottom: 40px;
+        margin-left: -100px;
+        background-repeat: no-repeat;
+      }
+      .tab-inner-grid-container {
+        display: grid;
+
+        grid-template-rows: auto;
+        justify-content: space-between;
+        margin: 0px;
+        margin-top: 15px;
+        padding: 0px;
+
+        grid-template-columns: 280px 280px 280px;
+        grid-template-rows: 160px 160px;
+        grid-gap: 30px;
+      }
+
+      .tab-inner-grid-container > li {
+        border: 1px solid #b9e9ed;
+        list-style-type: none;
+        overflow: hidden;
+        /* grid-column-start: 1; */
+      }
+
+      .link-button-container {
+        text-align: center;
+        display: grid;
+        justify-items: center;
+
+        grid-column-start: 1;
+        grid-column-end: 4;
+
+        padding-top: 20px;
+      }
+      .link-button-container > a:hover {
+        text-decoration: none;
+      }
+      .link-button {
+        background-color: #f8f8f8;
+        color: #37a5ad;
+        padding: 2px 30px;
+        font-size: 23px;
+        font-weight: 300;
+        font-variant: small-caps;
+        border-radius: 11px;
+        border: 1px solid #cfcfcf;
+      }
+
+      .description > p {
+        margin-top: 14px;
+      }
+    </style>
+    <title>Brendan Colloran - selected visualizations</title>
+  </head>
+
+  <body id="body">
+    <div id="center-column">
+      <div class="inner-grid-container">
+        <div class="name">
+          <div class="header-right">B R E N D A N</div>
+          <div class="header-left">C O L L O R A N</div>
+        </div>
+
+        <div class="full-width-headline">
+          DATA SCIENCE, ML, VISUALIZATION, WEB
+        </div>
+      </div>
+
+      <div class="inner-grid-container" id="tabs-2">
+        <div class="description">
+          <h4>A RICH PICTURE OF CATEGORICAL DATA</h4>
+          <p>
+            Depicting the relationship between categorical variables can be
+            tricky, and even moreso if your story needs to show the level of
+            confidence you can have in those relationshipse. This visualization
+            of the survey responses allow viewers to quickly see the "marginal
+            distributions" of each individual variable, as well the
+            relationships between the variables and the statistical confidence
+            level in the strength of those relationships.
+          </p>
+          <p>
+            <span class="impact">IMPACT:</span>These plots played an important
+            role in survey research conducted at Mozilla around key influencers
+            of technology adoption. Before this research project, surveys had
+            often been conducted in an ad-hoc manner, and the results were often
+            viewed skeptically. By focusing on rigor and presenting reults in
+            manner that visually conveyed the sophistication of the analysis,
+            the research team was able to persuasively engage with the product
+            team and successfully impact the product direction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

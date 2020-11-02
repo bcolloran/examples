@@ -1,0 +1,69 @@
+text.dayGraphText {
+  font-size: 12px;
+  stroke: none;
+  font-family: sans-serif;
+}
+
+rect.dayRect {
+  stroke-width: 0.5px;
+  stroke: none;
+  fill-opacity: 0.6;
+}
+
+.clicked1 rect.dayRect {
+  stroke-width: 5px;
+  stroke: #71ada3;
+  stroke-opacity: 1;
+}
+
+.clicked2 rect.dayRect {
+  stroke-width: 5px;
+  stroke: #ad717b;
+  stroke-opacity: 1;
+}
+
+.thisPingRect {
+  fill: none;
+  stroke-width: 0.5px;
+  stroke: black;
+  opacity: 1;
+}
+
+.tick text {
+  font-size: 10px;
+  stroke: none;
+  font-family: sans-serif;
+}
+
+g.tick line {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 1px;
+}
+
+path.domain {
+  fill: none;
+  stroke: #ddd;
+  stroke-width: 1px;
+}
+
+.sessionMarker {
+  fill: #444;
+  stroke: none;
+}
+.currentSession {
+  fill: #d63131;
+  stroke: none;
+}
+
+path.timeLinePath {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 0.5px;
+}
+
+.divergenceLink {
+  fill: none;
+  stroke: #ccc;
+  stroke-linecap: butt;
+}

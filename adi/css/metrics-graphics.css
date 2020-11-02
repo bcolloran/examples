@@ -1,0 +1,394 @@
+.aaahhh {
+    height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    width: 75%;
+}
+
+.aaahhh .alert {
+    display: none;
+    padding: 8px;
+}
+
+a,
+a:active,
+a:visited {
+    color: #4a87ba;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.active {
+    background-color: steelblue;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    padding: 5px;
+}
+
+.active_datapoint {
+    fill: black;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.area1-color {
+    fill: #0000ff;
+}
+
+.area2-color {
+    fill: #05b378;
+}
+
+.area3-color {
+    fill: #db4437;
+}
+
+.baselines line {
+    opacity: 0.2;
+    shape-rendering: crispEdges;
+    stroke: black;
+}
+
+.baselines text {
+    fill: black;
+    font-size: 9px;
+    opacity: 0.5;
+    stroke: none;
+}
+
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Open Sans', sans-serif, Arial;
+}
+
+.btn-group {
+    display: inline-block;
+}
+
+.btn-group span.which-button {
+    font-weight: 300;
+    color: darkgray;
+}
+
+circle {
+    fill: #0000ff;
+    opacity: 0.85;
+}
+
+#description {
+    margin: auto;
+    width: 75%;
+}
+
+.divider {
+    color: #000000;
+    opacity: 0.2;
+}
+
+header {
+    width: 100%;
+}
+
+header h1 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 25px;
+    margin-top: 0;
+    font-weight: 300;
+    color: gray;
+    text-transform: uppercase;
+}
+
+#footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 10px;
+}
+
+.goal line {
+    opacity: 0.5;
+    stroke: blue;
+    stroke-width: 1
+}
+
+.goal text {
+    fill: blue;
+    font-size: 8px;
+    font-weight: 600;
+    opacity: 0.3;
+}
+
+.goals_rollover_text {
+    fill: black;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+#google-search-volume .main-line.line1-color {
+    stroke: #0000ff;
+}
+
+#google-search-volume .area1-color {
+    fill: #0000ff;
+}
+
+#google-search-volume .main-line.line2-color {
+    stroke: black;
+}
+
+#google-search-volume .area2-color {
+    fill: black;
+}
+
+#google-search-others .main-line.line1-color {
+    stroke: #05b378;
+}
+
+#google-search-others .area1-color {
+    fill: #05b378;
+}
+
+#google-search-others .main-line.line2-color {
+    stroke: #db4437;
+}
+
+#google-search-others .area2-color {
+    fill: #db4437;
+}
+
+h2.chart_title {
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 400;
+    margin-left: 20px;
+}
+
+h2.chart_title .fa {
+    color: #ccc;
+    font-size: 14px;
+    padding-left: 4px;
+    vertical-align: top;
+}
+
+#head {
+    color: #ccccc;
+    margin: auto;
+    margin-bottom: 20px;
+    min-width: 700px;
+    width: 80%;
+}
+
+#head h1 {
+    font-size: 50px;
+    font-weight: 300;
+    margin: 45px 0 0 0;
+}
+
+#head ul {
+    font-size: 14px;
+    clear: both;
+    padding: 10px 0 0 0;
+}
+
+#head ul li {
+    display: inline;
+    list-style: none;
+    padding-right: 15px;
+}
+
+header h1 span {
+    font-size: 0.4em;
+    font-weight: 800;
+    color: lightgray;
+}
+
+.legend {
+    font-size: 11px;
+    padding: 25px 0 15px 0;
+}
+
+.line1-color {
+    stroke: #0000ff;
+}
+
+.line2-color {
+    stroke: #05b378;
+}
+
+.line3-color {
+    stroke: #db4437;
+}
+
+.markers line {
+    opacity: 0.2;
+    shape-rendering: crispEdges;
+    stroke: #3b3b3b;
+}
+
+.markers text {
+    fill: black;
+    font-size: 9px;
+    opacity: 0.5;
+    stroke: none;
+}
+
+.missing {
+    background-image: url(../images/missing-data.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 90% 90%;
+}
+
+.missing-pane {
+    fill: none;
+}
+
+.pill:hover {
+    text-decoration: none;
+}
+
+p {
+    font-family: 'PT Serif', serif;
+    font-size: 16px;
+}
+
+path.main-area {
+    opacity: 0.2;
+    stroke: none;
+}
+
+path.main-line {
+    opacity: 0.8;
+    fill: none;
+}
+
+.permalink {
+    margin-top: 10px;
+}
+
+.pill {
+    font-family: 'Open Sans', serif;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.gr {
+  text-align: center;
+}
+
+text {
+    opacity: 0.8;
+    fill: black;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#trunk {
+    margin-top: 40px;
+}
+
+#trunk h2 {
+    font-size: 15px;
+}
+
+#trunk h2.trunk-title {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 25px;
+}
+
+.trunk-section {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    padding-bottom: 25px;
+}
+
+.voronoi path {
+    fill: none;
+    pointer-events: all;
+    stroke: none;
+    stroke-opacity: 0.1;
+}
+
+.x-axis line,
+.y-axis line {
+    opacity: 0.3;
+    shape-rendering: crispEdges;
+    stroke: black;
+}
+
+.x-axis text,
+.y-axis text {
+    fill: black;
+    font-size: 11px;
+    opacity: 0.5;
+}
+
+.year-marker text {
+    fill: black;
+    font-size: 9px;
+    opacity: 0.5;
+}
+
+.year-marker line {
+    shape-rendering: crispEdges;
+    opacity: 0.2;
+    stroke: black;
+    stroke-width: 1;
+}
+
+.google-line {
+    color: blue;
+}
+
+.yahoo-line {
+    color: red;
+}
+
+.bing-line {
+    color: orange;
+}
+
+.other-line {
+    color: gray;
+}
+
+.updated_label {
+    color: #5e5e5e;
+}
+
+.updated_date {
+    color: gray;
+    font-style: italic;
+}
+
+.links-and-buttons {
+    margin-bottom: 50px;
+}
+
+header ul {
+    font-size: 14px;
+    clear: both;
+    padding: 10px 0 30px 0;
+}
+
+header ul li {
+    display: inline;
+    list-style: none;
+    padding-right: 15px;
+}

@@ -1,0 +1,480 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+    <!-- <script type="text/javascript" src="d3.v3/d3.v3.js"></script>
+  <script type="text/javascript" src="js/date.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script> -->
+
+    <!-- <link href="styles/svgJson.css" rel="stylesheet" /> -->
+    <!-- <link href="styles/rawJsonTable.css" rel="stylesheet" /> -->
+    <!-- <link href="styles/dayDivSvg.css" rel="stylesheet" /> -->
+    <link href="styles/reset_and_base_styles.css" rel="stylesheet" />
+    <!-- <link href="styles/accordion_styles.css" rel="stylesheet" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="styles/opensans-npm-webfont-master/style.css"> -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" /> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: Nunito;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        margin-left: 0px;
+        margin-right: 0px;
+
+        grid-template-columns: auto 900px auto;
+        grid-template-rows: auto;
+        /* justify-items: center; */
+        display: grid;
+        overflow-y: scroll;
+      }
+
+      #center-column {
+        grid-column-start: 2;
+      }
+
+      .inner-grid-container {
+        grid-template-columns: 300px 300px 300px;
+        grid-template-rows: auto;
+        /* justify-items: center; */
+        display: grid;
+        /* height:100%; */
+        margin: 0px;
+        margin-top: 45px;
+      }
+
+      .description {
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+
+      h4 {
+        grid-column-start: 2;
+        grid-column-end: 5;
+        color: #37a5ad;
+        font-size: 24px;
+        font-weight: 500;
+        font-variant: small-caps;
+        margin-bottom: 0px;
+        border-bottom: 1px solid #cccccc;
+      }
+
+      .name {
+        font-size: 60px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 100;
+        line-height: 37.4px;
+        color: #37a5ad;
+        margin: -5px;
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+
+      .header-right {
+        float: left;
+        width: 440px;
+      }
+      .header-left {
+        float: right;
+        width: 440px;
+        text-align: right;
+      }
+
+      .full-width-headline {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 100;
+        color: #666666;
+        margin-top: 30px;
+      }
+      /* 
+      .grid-left {
+        grid-column-start: 2;
+        grid-column-end: 4;
+      } */
+
+      /* .grid-right {
+        grid-column-start: 3;
+        grid-column-end: 5;
+      } */
+
+      .impact {
+        font-weight: 600;
+        color: #37a5ad;
+      }
+
+      .image-left {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .image-background-left {
+        height: calc(100% - 62px);
+        background-position: right center;
+        margin-top: 39px;
+        border: 1px solid #b9e9ed;
+        margin-right: 105px;
+        margin-bottom: 40px;
+        margin-left: -100px;
+        background-repeat: no-repeat;
+      }
+      /* 
+      .image-right {
+        grid-column-start: 4;
+        grid-column-end: 6;
+        overflow: hidden;
+      } */
+
+      /* .image-background-right {
+        height: calc(100% - 62px);
+        background-position: left center;
+        margin-top: 39px;
+        border: 1px solid #b9e9ed;
+        margin-left: 105px;
+        margin-bottom: 40px;
+        margin-right: -100px;
+        background-repeat: no-repeat;
+      } */
+
+      .tab-inner-grid-container {
+        display: grid;
+        /* grid-template-columns: 120px 120px 120px 120px 120px 120px; */
+
+        grid-template-rows: auto;
+        justify-content: space-between;
+        /* justify-items: center; */
+        margin: 0px;
+        margin-top: 15px;
+        padding: 0px;
+
+        grid-template-columns: 280px 280px 280px;
+        grid-template-rows: 160px 160px;
+        grid-gap: 30px;
+      }
+
+      .tab-inner-grid-container > li {
+        border: 1px solid #b9e9ed;
+        list-style-type: none;
+        overflow: hidden;
+        /* grid-column-start: 1; */
+      }
+
+      .link-button-container {
+        text-align: center;
+        display: grid;
+        justify-items: center;
+
+        grid-column-start: 1;
+        grid-column-end: 4;
+
+        padding-top: 20px;
+      }
+      .link-button-container > a:hover {
+        text-decoration: none;
+      }
+      .link-button {
+        background-color: #f8f8f8;
+        color: #37a5ad;
+        padding: 2px 30px;
+        font-size: 23px;
+        font-weight: 300;
+        font-variant: small-caps;
+        border-radius: 11px;
+        border: 1px solid #cfcfcf;
+      }
+
+      .description > p {
+        margin-top: 14px;
+      }
+    </style>
+    <title>Brendan Colloran - selected visualizations</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#tabs").tabs();
+      });
+    </script>
+  </head>
+
+  <body id="body">
+    <div id="center-column">
+      <div class="inner-grid-container">
+        <div class="name">
+          <div class="header-right">B R E N D A N</div>
+          <div class="header-left">C O L L O R A N</div>
+        </div>
+
+        <div class="full-width-headline">
+          DATA SCIENCE, ML, VISUALIZATION, WEB
+        </div>
+      </div>
+
+      <div id="tabs">
+        <ul class="tab-inner-grid-container">
+          <li>
+            <a href="#tabs-2"
+              ><img
+                src="/screenshots/adu_static.png"
+                style="
+                  height: 207px;
+                  position: relative;
+                  left: -16px;
+                  top: -23px;
+                "
+            /></a>
+          </li>
+          <li>
+            <a href="#tabs-3"
+              ><img
+                src="/screenshots/corr_mat_labeled.png"
+                style="
+                  height: 322px;
+                  position: relative;
+                  left: -49px;
+                  top: -142px;
+                "
+            /></a>
+          </li>
+
+          <li>
+            <a href="#tabs-4"
+              ><img
+                src="screenshots/divergence_graph.png"
+                style="height: 170px"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="#tabs-5"
+              ><img
+                src="/screenshots/survey_plot.png"
+                style="
+                  position: relative;
+                  right: -37px;
+                  top: -90px;
+                  left: -28px;
+                  width: 478px;
+                "
+            /></a>
+          </li>
+          <li>
+            <a href="#tabs-6"
+              ><img
+                src="/screenshots/lorenz.png"
+                style="
+                  height: 300px;
+                  position: relative;
+                  left: -65px;
+                  top: -43px;
+                "
+            /></a>
+          </li>
+          <li>
+            <a href="#tabs-iodide"
+              ><img
+                src="/screenshots/iodide_static.png"
+                style="position: relative; top: -57px; left: -5px; width: 103%"
+              />
+            </a>
+          </li>
+        </ul>
+
+        <div class="inner-grid-container" id="tabs-2">
+          <div class="description">
+            <h4>PRODUCT USAGE DETAILS AND FORECAST</h4>
+            <p>
+              This is a recreation of a dashboard that was built to give
+              decision makers clearer insight into the the long-term trends in
+              the growth of Firefox usage, as well as allowing them to
+              understand the annual cycles of variability in Firefox use.
+              Additionally, it provided forecasts with uncertainty estimates to
+              guide goal-setting for each calendar year, as well as allowing
+              decision makers to track progress against projections.
+            </p>
+            <p>
+              <span class="impact">IMPACT:</span> Before this dashboard was
+              deployed, leadership did not have a clear understanding of our
+              usage trajectory or seasonal patterns of product usage. This would
+              cause great consternation every June when our numbers always
+              appeared to crater, and excessive optimism when they recovered in
+              October. Presenting a comprehensive overview of how our daily
+              numbers broke down into long-term trends and shorter-term cycles
+              allowed more stable and robust long-term planning and day-to-day
+              decision making. The value of this visualization was proved by its
+              longevity: while most dashboards would be maintained for only
+              12-18 months, this one remained in active used for
+              <em>seven years</em>.
+            </p>
+          </div>
+          <div class="link-button-container">
+            <a href="adi/"><div class="link-button">VISIT</div></a>
+          </div>
+        </div>
+
+        <div id="tabs-3" class="inner-grid-container">
+          <div class="description">
+            <h4>DO TECHNOLOGY "POWER USERS" DRIVE USAGE?</h4>
+            <p>
+              In 2016, Mozilla launched an organization-wide push to identify
+              our most active users and to focus product development efforts on
+              attracting and retaining those users. There was a long-standing
+              belief in the product organization that "heavy users" would also
+              be "power users" (i.e. technology enthusiasts with powerful
+              computers), and that we could target our efforts by reaching out
+              to these people. This visualization addressed the relationship
+              between measures of product usage and computer hardware quality.
+            </p>
+            <p>
+              <span class="impact">IMPACT:</span> By providing a clear visual
+              overview of the relationships between usage and hardware spec, and
+              by allowing product managers to explore these relationships and
+              see them with their own eyes, product management was persuaded
+              that developing user personas based around the idea of tech
+              enthusiasts would not achieve the desired results. Because of
+              this, product management engaged with the data science to develop
+              a well-founded set of proxy metrics for "heavy users".
+            </p>
+          </div>
+          <div class="link-button-container">
+            <a href="correlations/"><div class="link-button">VISIT</div></a>
+          </div>
+        </div>
+
+        <div id="tabs-4" class="inner-grid-container">
+          <div class="description">
+            <h4>OVERVIEW OF DUPLICATES IN A KEY DATA SOURCE</h4>
+            <p>
+              In order to protect user privacy, Firefox's first major data
+              collection effort relied on a complicated set of ID exchanges.
+              Once deployed, it turned out that this ID handling was very error
+              prone, and individual browser instances were submitting enormous
+              amounts of duplicate data. This caused a critical data set to be
+              essentially unusable for many data science purposes. The data
+              science team presented textual reports on the issue, but many
+              engineers involved in building the data collection system believed
+              these analyses were incorrect and that the problem could not be as
+              severe as descibed.
+            </p>
+            <p>
+              <span class="impact">IMPACT:</span> This visualization allowed
+              engineers to see the problem in great detail with their own eyes,
+              and this strong visual proof of the issue moved the conversation
+              forward where textual descriptions and summary statistics had not.
+              This convinced the engineering team that the problem was real and
+              demanded attention, leading to a major overhaul of this essential
+              data collection system and unblocking data science across the
+              company.
+            </p>
+          </div>
+
+          <div class="link-button-container">
+            <a href="duplicates/"><div class="link-button">VISIT</div></a>
+          </div>
+        </div>
+
+        <div id="tabs-5" class="inner-grid-container">
+          <div class="description">
+            <h4>A RICH PICTURE OF CATEGORICAL DATA</h4>
+            <p>
+              Depicting the relationship between categorical variables can be
+              tricky, and even moreso if your story needs to show the level of
+              confidence you can have in those relationshipse. This
+              visualization of the survey responses allow viewers to quickly see
+              the "marginal distributions" of each individual variable, as well
+              the relationships between the variables and the statistical
+              confidence level in the strength of those relationships.
+            </p>
+            <p>
+              <span class="impact">IMPACT:</span>These plots played an important
+              role in survey research conducted at Mozilla around key
+              influencers of technology adoption. Before this research project,
+              surveys had often been conducted in an ad-hoc manner, and the
+              results were often viewed skeptically. By focusing on rigor and
+              presenting reults in manner that visually conveyed the
+              sophistication of the analysis, the research team was able to
+              persuasively engage with the product team and successfully impact
+              the product direction.
+            </p>
+          </div>
+          <div class="link-button-container">
+            <a href="categorical.html"
+              ><div class="link-button">LEARN MORE</div></a
+            >
+          </div>
+        </div>
+
+        <div class="inner-grid-container" id="tabs-6">
+          <div class="description">
+            <h4>UNDERSTANDING THE LORENZ ATTRACTOR</h4>
+            <p>
+              Designed as a demonstration of the capabilities of the web and the
+              Iodide IDE, this page depicts the well-known Lorenz Attractor from
+              chaos theory. Typical 2d depictions of this complicated
+              mathematical object fail to reveal its rich 3d structure, and
+              static depictions fail to convey the meaning of the model's
+              paramaters and the impact of changing them. By presenting the
+              Attractor in 3d and allowing readers to adjust it's parameters and
+              see the results in real time, a much deeper understanding can be
+              achieved.
+            </p>
+            <p>
+              <span class="impact">IMPACT:</span> Despite being designed
+              primarily as a demo for Iodide, this visualization has gone on to
+              have a life of its own, having been visited over
+              <em>30,000 times</em>, helping to enrich many people's
+              understanding of a mathematical topic.
+            </p>
+          </div>
+          <div class="link-button-container">
+            <a href="https://alpha.iodide.io/notebooks/34/?viewMode=report"
+              ><div class="link-button">VISIT</div></a
+            >
+          </div>
+        </div>
+
+        <div class="inner-grid-container" id="tabs-iodide">
+          <div class="description">
+            <h4>IODIDE</h4>
+            <p>
+              Iodide is a tool designed to allow data scientists to tell rich,
+              beautiful stories using the full power of the web technology stack
+              in a tool similar to other data science codind environments. By
+              unlocking the enormous interaction and multimedia capabilities of
+              the web, data scientists are able to write data-journalism-quality
+              reports that have the visual quality you might see on
+              fivethirtyeight.com or the New York Times Data Blog, but without
+              needing to learn the incredibly complicated tool chains required
+              for full scall web development.
+            </p>
+            <p>
+              <span class="impact">IMPACT:</span> Iodide achieved ~2000 monthly
+              active users, received several media mentions, and posts about our
+              technology reached the top spot on Hacker News twice.
+            </p>
+          </div>
+          <div class="link-button-container">
+            <a href="https://alpha.iodide.io/"
+              ><div class="link-button">VISIT</div></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

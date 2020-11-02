@@ -1,0 +1,256 @@
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Company.com Desktop ADU Details</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/metrics-graphics.css" rel="stylesheet" type="text/css">
+    <link href="css/adiDetails.css" rel="stylesheet" type="text/css">
+    <link href="css/chart.css" rel="stylesheet" type="text/css">
+
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
+    <script src="js/d3.js" charset="utf-8"></script>
+    <!-- <script type="text/javascript" src="js/jquery-multiselect.js"></script> -->
+<!-- 
+    <link href="css/pgwmenu.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/pgwmenu.js"></script> -->
+
+    <script src='js/chartTools.js'></script>
+    <script src='js/adiDetailsMain.js'></script>
+
+
+</head>
+
+<body>
+    <div class='container'>
+        <header>
+            <ul>
+                <li class='updated_label'>Data current through <span id='dataCurrentThrough'></span></li>
+            </ul>
+
+            <div class='row'>
+                <h1>Company.com Usage Details:<br>Understanding Long-Term Trends</h1>
+            </div>
+
+            <div id='description'>
+                <p>This dashboard is designed to help you better understand the health of Company.com by presenting the Data Team's  estimates of the trend in Active Daily User (ADU) counts. In addition to understanding these trends in ADU, you can also learn more about the cyclical patterns of Company.com use that we observe, and anomalies in our data collection pipeline.</p>
+            </div>
+        </header>
+        <div id='trunk'>
+            <div id="componentRow" class='row trunk-section'>
+                <div class='col-sm-12 col-lg-4' id='div-componentText'>
+                    <h2 class='trunk-title'>ADU components</h2>
+                    <p>Company.com ADU can be broken down into five components. By clicking the buttons above the graph, you can see these components individually or in whatever combination you wish. Each component is described in detail below.</p>
+
+                    <div id="componentAccordion" class="panel-group">
+                      <h4 class="panel-title componentLink" data-toggle="collapse" data-parent="#accordion" href="#collapseTrend" comp-key="trend">Long-Term Trend</h4>
+                      <div class="panel-body">
+                          The most important component of the ADU signal for understanding the health of Company.com is the long-term trend in daily activity, measured as the count of daily Blocklist Pings expected in the absence of other variation. This de-seasonalized and de-noised trend peaked in late 2013.
+                      </div>
+
+                      <h4 class="panel-title componentLink" data-toggle="collapse" data-parent="#accordion" href="#collapseSeasonal" comp-key="seasonal">Seasonality</h4>
+                      <div class="panel-body">
+                        There are clear annual patterns in Company.com usage, the most important of which are the "summer slump", a slow decline which runs roughly from May to September, and sharp decline in activity around the Christmas and New Year's holidays.
+                        </br></br>The seasonal component of variation is measured as multiple of the trend.
+                      </div>
+
+                      <h4 class="panel-title componentLink" data-toggle="collapse" data-parent="#accordion" href="#collapseWeekly" comp-key="weekly">Weekly Variation</h4>
+                      <div class="panel-body">
+                        Company.com usage is heavily concentrated during the workweek, peaking on Tuesday and reaching its minimum on Sunday. Interestingly the weekly variation has increased over time: in late 2008, the weekends lows had 79% of the activity weekday peaks.
+                        </br></br>The weekly component of variation is measured as multiple of the trend.
+                      </div>
+
+                      <h4 class="panel-title componentLink" data-toggle="collapse" data-parent="#accordion" href="#collapseOutlier" comp-key="outlier">Outliers</h4>
+                      <div class="panel-body">
+                      Our underlying data contains a number of outliers, which typically represent problems with the data collection pipeline (server or database outages). The frequency of these outages peaked in early 2014, leading IT to update the pipeline, and prompting the Data Team to adopt more sophisticated outlier detection techniques. We are now able to detect outliers and filter them out of the data, which prevents them from affecting our estimates of the long-term trend and other components.
+                      </br></br>The outlier component of variation is measured as multiple of the trend.
+                      </div>
+
+                      <h4 class="panel-title componentLink" data-toggle="collapse" data-parent="#accordion" href="#collapseNoise" comp-key="noise">Stochastic Noise</h4>
+                      <div class="panel-body">
+                      As with all statistical models, this decompostion includes random noise that cannot be attributed to the other components of variation.
+                      </br></br>The noise component of variation is measured as multiple of the trend.
+                      </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-12 col-lg-8' id="componentFigureDiv">
+
+
+                <div id="controlsAndInfoRow">
+                  <table id="controlsAndInfoTable">
+                    <tr>
+                      <td>
+                        <table class="controlsTable">
+                          <tr>
+                            <td>
+                              <div id="componentButtons" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default active" data-key="trend">
+                                  <input type="checkbox"> Trend
+                                </label>
+                                <label class="btn btn-default" data-key="seasonal">
+                                  <input type="checkbox"> Seasonal
+                                </label>
+                                <label class="btn btn-default" data-key="weekly">
+                                  <input type="checkbox"> Weekly
+                                </label>
+                                <label class="btn btn-default" data-key="outlier">
+                                  <input type="checkbox"> Outlier
+                                </label>
+                                <label class="btn btn-default" data-key="noise">
+                                  <input type="checkbox"> Noise
+                                </label>
+                              </div>
+                            </td>
+                            <td>
+                            <div id="allButton" class="btn-group pull-right" data-toggle="buttons">
+                              <label class="btn btn-default" data-key="all">
+                                <input type="checkbox"> All (Raw Data)
+                              </label>
+                            </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div id="dateToolbar" class="btn-toolbar" role="toolbar">
+                                <div id="dateButtons" class="btn-group" data-toggle="buttons">
+                                  <label class="btn btn-default active" num-days="">
+                                    <input type="checkbox"> All time
+                                  </label>
+                                  <label class="btn btn-default" num-days="370">
+                                    <input type="checkbox"> 1yr
+                                  </label>
+                                  <label class="btn btn-default" num-days="190">
+                                    <input type="checkbox"> 6mo
+                                  </label>
+                                  <label class="btn btn-default" num-days="31">
+                                    <input type="checkbox"> 1mo
+                                  </label>
+                                  <label class="btn btn-default" num-days="7">
+                                    <input type="checkbox"> 1wk
+                                  </label>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                                <div id="optionsButton" class="btn-group dropup">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-cog"></span> Options
+                                  </button>
+                                  <ul id="optionsMenu" class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <li class="active" data-key="highlightOutliers"><a>Highlight outlier dates <span class="glyphicon glyphicon-check"></span></a></li>
+                                    <li class="active" data-key="rawInBkgd"><a>Show raw data in background <span class="glyphicon glyphicon-check"></span></a></li>
+                                    <li class="" data-key="foreYtd"><a>Show forecast: today to Dec 31 <span class="glyphicon glyphicon-unchecked"></span></a></li>
+                                    <li class="" data-key="foreJan1"><a>Show forecast: Jan 1 to Dec 31 <span class="glyphicon glyphicon-unchecked"></span></a></li>
+
+                                    <li role="presentation" class="dropdown-header">Growth rate time period</li>
+                                    <li class="subradio">
+                                      <div id="growthButtons" class="btn-group btn-group-xs" data-toggle="buttons">
+                                        <label class="btn btn-default" data-key="daily" num-days="1">
+                                          <input type="checkbox">Daily
+                                        </label>
+                                        <label class="btn btn-default active" data-key="annualized" num-days="1">
+                                          <input type="checkbox">Annualized
+                                        </label>
+                                      </div>
+                                    </li>
+
+                                    <li role="presentation" class="dropdown-header">Growth rate value</li>
+                                    <li class="subradio">
+                                      <div id="growthValButtons" class="btn-group btn-group-xs" data-toggle="buttons">
+                                        <label class="btn btn-default active" data-key="abs">
+                                          <input type="checkbox">Absolute
+                                        </label>
+                                        <label class="btn btn-default" data-key="pct">
+                                          <input type="checkbox">Percentage
+                                        </label>
+                                      </div>
+                                    </li>
+
+                                  </ul>
+                                </div>
+                            </td>
+                          </tr>
+                          
+                        </table>
+                      </td>
+                      <td class="plotDetails">
+                        <div class="activeDateText">mouse over plot for details</div>
+
+                        <table>
+                          <tr class="obsTextRow"><td></td><td class="hoverVal">NA</td><td>(<span class="growthAbs">NA</span>, </td><td><span class="growthPct">NA</span>)</td></tr>
+                        </table>
+                        <div id="forecastHeader">Forecast/estimate as of:</div>
+
+                        <table><tr class="ytdTextRow"><td>Today:</td><td class="hoverVal">NA</td><td>(<span class="growthAbs">NA</span>, </td><td><span class="growthPct">NA</span>)</td></tr>
+                          <tr class="jan1TextRow"><td>Jan 1:</td><td class="hoverVal">NA</td><td>(<span class="growthAbs">NA</span>, </td><td><span class="growthPct">NA</span>)</td></tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div id="svg-component"></div>
+
+              </div>
+          </div>
+
+
+
+
+            <div id="decompMethodDescriptionRow" class='row trunk-section'>
+              <div class='col-sm-12 col-lg-8' >
+                <h2 class='trunk-title'>Key things to know about this decomposition</h2>
+
+                <p>This decompostion is what economists refer to as a "nowcast", and as such, it is subject to revision as new data comes in. Importantly, the details of the trend estimate for the most recent 12-18 months are likely to change as. The seasonal and weekly component are somewhat more stable, but they also undergo continuous revision.</p>
+
+                <p>This decomposition makes a few simplifying assumptions, including (among others):
+                <ul>
+                <li><p>treating the seasonal variation as consistent across years;</p></li>
+                <li><p>limiting the resolution of the seasonal features considered;</p></li>
+                <li><p>treating the weekly variation as consistent across weeks, but with linear drift (increasing variation over time);</p></li>
+                <li><p>limiting the rate at which the underlying trend can change.</p></li>
+                </ul>
+                </p>
+
+              </div>
+              <div class='col-sm-12 col-lg-8' >
+                <h2 class='trunk-title'>How to understand the forecasts</h2>
+                <p>
+                In the "Options" menu above the plots, you may choose to display forcasts over two time horizons:
+                </p>
+                <ol>
+                  <li><p>from January first of this year to the end of the year</p></p></li>
+                  <li><p>from today's date to the end of the year</p></li>
+                </ol>
+                <p>
+                The first forecast shows our expections at the time we set annual goals, and by comparing that with the second forecast, it is possible to see how we are performing against target.
+                </p>
+
+              </div>
+
+              <div class='col-sm-12 col-lg-8' >
+                <h2 class='trunk-title'>How to read the growth plot</h2>
+                <p>The bottom plot shows the <em>estimated change</em> of the value depicted in the top plot. From the options menu, you may choose to show this rate as either a percentage change or plain value. You may also choose to show the daily change or you can show the <em>annualized daily change</em>, which shows what the change would be if the rate of change on that day were continued for 365 days.</p>
+
+                <p>Please note that most cases, you will probably wish to view this graph with only the trend component
+                active, because that will give you our current long-term rate growth without including cyclical components.
+              </p>
+              </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,593 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+    <script type="text/javascript" src="d3.v3/d3.v3.js"></script>
+    <script type="text/javascript" src="js/date.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <link href="styles/svgJson.css" rel="stylesheet" />
+    <!-- <link href="styles/rawJsonTable.css" rel="stylesheet" /> -->
+    <link href="styles/dayDivSvg.css" rel="stylesheet" />
+    <link href="styles/reset_and_base_styles.css" rel="stylesheet" />
+    <link href="styles/accordion_styles.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="styles/opensans-npm-webfont-master/style.css"
+    />
+
+    <style>
+      body {
+        grid-template-columns: 420px auto;
+        grid-template-rows: 100%;
+        display: grid;
+        height: 100%;
+        margin: 0px;
+        font-size: 14px;
+      }
+
+      #explanation {
+        grid-column: 1;
+        grid-row: 1;
+        overflow: auto;
+        height: 100%;
+        padding: 30px;
+      }
+
+      #plotWrapper {
+        grid-column: 2;
+        grid-row: 1;
+        height: 100%;
+        max-width: 100%;
+        overflow: auto;
+        margin: 0px;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        background-color: #c5efff;
+      }
+
+      #componentAccordion > h4 {
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 300;
+      }
+
+      /* svg {
+  border: solid #c3c3c3 1px;
+  margin: 0px;
+  padding: 0px;
+} */
+    </style>
+
+    <title>Duplication in user data submissions</title>
+  </head>
+
+  <body id="body">
+    <div id="explanation">
+      <h2>Duplication in user data submissions</h2>
+
+      <div id="componentAccordion" class="panel-group">
+        <h4
+          class="panel-title componentLink"
+          data-toggle="collapse"
+          data-parent="#accordion"
+          href="#collapseTrend"
+          comp-key="trend"
+        >
+          Overview
+        </h4>
+        <div class="panel-body">
+          <p>
+            This visualization depicts overlapping data from multiple data
+            submissions sent by a single software installation.
+          </p>
+
+          <p>
+            Each data submission is shown as an individual timeline. Each
+            colored block on the timeline represents a day on which activity was
+            recorded. The color of each block is uniquely determined by the data
+            from that day, so identically colored blocks indicate days with
+            identical data.
+          </p>
+
+          <p>
+            Below the individual timelines we show the same subission data
+            merged into single graph that shows how the histories branch.
+          </p>
+
+          <p>
+            The sections below describe a number of the problems we see in the
+            data. Click the links in those descriptions to see the records in
+            question.
+          </p>
+        </div>
+
+        <h4
+          class="panel-title componentLink"
+          data-toggle="collapse"
+          data-parent="#accordion"
+          href="#collapseSeasonal"
+          comp-key="seasonal"
+        >
+          "Standard" duplicates
+        </h4>
+        <div class="panel-body">
+          The picture of duplication that we would naively expect to see (and
+          that we could fix wit post-processing) looks like
+          <a href="javascript:loadData('data/_numRecs5_partIdp9e')">this</a>, or
+          <a href="javascript:loadData('data/_numRecs6_partIdp3c')">this</a>:
+          all of the data in older submissions should be contained in newer
+          submissions (save for any data that has been dropped from the start of
+          the submission because it was recorded more than 180 days before the
+          record submission date, which is the maximum lookback for an
+          individual submission). In actual practice, we see a lot of
+          submissions
+          <a href="javascript:loadData('data/_numRecs16_partIdp0a')"
+            >like this</a
+          >, wherein the last full day is not identical between all submissions
+          because the instance records a few more sessions later in a day after
+          it has already submitted data once.
+        </div>
+
+        <h4
+          class="panel-title componentLink"
+          data-toggle="collapse"
+          data-parent="#accordion"
+          href="#collapseWeekly"
+          comp-key="weekly"
+        >
+          The problem is ongoing
+        </h4>
+        <div class="panel-body">
+          Note that
+          <a href="javascript:loadData('data/_numRecs48_partIdp12')"
+            >duplicate records are still being submitted</a
+          >. Note that this data was pulled on 2014-02-03, <em>after</em> the
+          2014-01-07 patch was deployed. This unfortunately contradicts our
+          hopes that the problem has been remedied. See also
+          <a href="javascript:loadData('data/_numRecs48_partIdp00')"
+            >this instance</a
+          >, which submitted many records on 2014-01-22, two weeks after the
+          patch date.
+        </div>
+
+        <h4
+          class="panel-title componentLink"
+          data-toggle="collapse"
+          data-parent="#accordion"
+          href="#collapseOutlier"
+          comp-key="outlier"
+        >
+          Profile copying?
+        </h4>
+        <div class="panel-body">
+          There are a fair number of records that have a pattern of divergence
+          that looks
+          <a href="javascript:loadData('data/_numRecs4_partIdp4f')">like</a>
+          <a href="javascript:loadData('data/_numRecs5_partIdp16')">profile</a>
+          <a href="javascript:loadData('data/_numRecs16_partIdp03')">copying</a
+          >. In these cases, the histories are the same up to some date, and
+          they subsequently branch one or more times. Importantly, the diverging
+          histories <em>continue to be updated in parallel</em>. This is a novel
+          problem, and dealing with it will require a new approach to ID
+          assignment.
+        </div>
+
+        <h4
+          class="panel-title componentLink"
+          data-toggle="collapse"
+          data-parent="#accordion"
+          href="#collapseNoise"
+          comp-key="noise"
+        >
+          Restore points or deeper errors?
+        </h4>
+        <div class="panel-body">
+          <p>
+            There are also some sets of records for which the only explanation
+            seems to be either a very pernicious error, or of the computer being
+            <a href="javascript:loadData('data/_numRecs19_partIdp16')"
+              >rolled</a
+            >
+            <a href="javascript:loadData('data/_numRecs77_partIdp03')">back</a>
+            to a restore point basically
+            <a href="javascript:loadData('data/_numRecs33_partIdp0d')">every</a>
+            <a href="javascript:loadData('data/_numRecs71_partIdp03')">day</a>,
+            or every day after
+            <a href="javascript:loadData('data/_numRecs11_partIdp3a')">some</a>
+            <a href="javascript:loadData('data/_numRecs24_partIdp04')">point</a
+            >.
+          </p>
+
+          <p>
+            This anomaly is worrisome, because (1) it is quite common, and seems
+            much more prevalent than we might expect machines to be rolled back,
+            and (2) it looks like it could easily be the result of an off-by-one
+            error that causes only the most recent day of activity to be
+            recalled after an instance enters an error state. Importantly, both
+            of these cases would be addressed by the proposed ID handling
+            scheme.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="plotWrapper">
+      <svg id="mainSvg" width="100%" height="800px"></svg>
+    </div>
+
+    <!-- <div id="dataLayout"></div> -->
+
+    <!-- <table id="rawJsonTable">
+  <tr class="buttons">
+    <td class="rowLabel">click on a day above to see raw data</td>
+    <td><div id="buttonCol1" class="selectionToggle stCol1">Active column</div></td>
+    <td><div id="buttonCol2" class="selectionToggle stCol2 inactiveButton">Click to activate column</div></td></tr>
+  <tr class="header">
+    <td class="rowLabel"></td>
+    <td class="col1">nothing selected</td>
+    <td class="col2">nothing selected</td></tr>
+  <tr class="row">
+    <td class="rowLabel">data$days</td>
+    <td class="col1">nothing selected</td>
+    <td class="col2">nothing selected</td></tr>
+</table> -->
+
+    <script type="text/javascript">
+      var width = 900,
+        height = 800;
+
+      var textAreaWidth = 150;
+
+      var dayGraphs;
+      var dailySessionDataPerRecord;
+
+      var ySpacing = 23;
+
+      var allDates;
+      var dateRange;
+
+      var timeScale;
+      var isoTime = d3.time.format("%Y-%m-%d");
+      var isoToDate = isoTime.parse;
+
+      var dayGraphYSpacing = 25;
+
+      var bottomGraphOffest = 10;
+
+      dayGlyphH = 10;
+
+      var divergeTickHeight = 5;
+      var divergeThreadSpacing = 20;
+
+      const customTimeFormat = (monthlyTicks) => {
+        return (date) => {
+          if (date.getDate() !== 1) {
+            if (!monthlyTicks) return d3.time.format("%-d")(date);
+            return "";
+          }
+          if (date.getMonth() !== 0) return d3.time.format("%B %-d")(date);
+          return "Jan 1 2014"; //d3.time.format("%Y")(date)
+        };
+      };
+
+      var lineGroups;
+
+      var chartGroup = d3
+        .select("#mainSvg")
+        .append("g")
+        .attr("id", "chartGroup");
+
+      dayGraphsGroup = chartGroup
+        .append("g")
+        .attr("id", "dayGraphsGroup")
+        .attr("transform", "translate(0,90)");
+
+      timeAxisGroup = chartGroup
+        .append("g")
+        .attr("id", "timeAxisGroup")
+        .attr("transform", "translate(0,70)");
+
+      // dataLayoutDiv = d3.select("#dataLayout")
+
+      dayLineSpec = d3.svg
+        .line()
+        .x(function (d) {
+          return timeScale(isoToDate(d));
+        })
+        .y(function (d) {
+          return 0;
+        });
+
+      dayLineSpec = d3.svg
+        .line()
+        .x(function (d) {
+          return timeScale(isoToDate(d));
+        })
+        .y(function (d) {
+          return 0;
+        });
+
+      loadData = function (url) {
+        d3.text(url, function (rawText) {
+          parseFileAndDraw(rawText);
+        });
+      };
+
+      loadData("data/_numRecs16_partIdp11");
+
+      function sortGraphObjects(a, b) {
+        if (a.recordsInGraph > 1) {
+          return 1;
+        } else if (b.recordsInGraph > 1) {
+          return -1;
+        } else {
+          return a.maxDate < b.maxDate ? -1 : 1;
+        }
+      }
+
+      function parseFileAndDraw(rawText) {
+        rawLines = rawText.split(/[\r\n]+/g);
+        var i = 0;
+        dayGraphs = rawLines.map(JSON.parse).sort(sortGraphObjects);
+        numGraphs = dayGraphs.length;
+
+        dateRange = d3
+          .extent(
+            d3.merge(
+              dayGraphs.map(function (d) {
+                return [d.minDate, d.maxDate];
+              })
+            )
+          )
+          .map(isoToDate);
+
+        console.log(dateRange);
+        numDays = (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24);
+        monthlyTicks = numDays > 30;
+        localTimeFormat = customTimeFormat(monthlyTicks);
+
+        timeScale = d3.time.scale
+          .utc()
+          .domain(dateRange)
+          .range([textAreaWidth, width * 0.98]);
+
+        dayTickWidth = Math.min(
+          timeScale(isoToDate("2001-01-02")) -
+            timeScale(isoToDate("2001-01-01")),
+          dayGlyphH
+        );
+        // dayTickWidth = 10
+
+        timeAxis = d3.svg
+          .axis()
+          .scale(timeScale)
+          .orient("top")
+          .tickFormat(localTimeFormat)
+          .ticks(d3.time.days, 1);
+
+        //CLEAR THE OLD dayGraphs and OLD DIVERGENCE GRAPH
+        dayGraphsGroup.selectAll("g.dayGraphs").remove();
+
+        timeAxisGroup
+          .call(timeAxis)
+          .selectAll("text")
+          .attr("y", 0)
+          .attr("x", 9)
+          .attr("dy", ".35em")
+          .attr("transform", "rotate(-65)")
+          .style("text-anchor", "start");
+
+        dayGraphsGroup
+          .append("g")
+          .attr("class", "dayGraphs")
+          .selectAll("g.dayGraph") //create a selection object
+          .data(dayGraphs) //attach one dayDraph data object to each g.dayGraph
+          .enter()
+          .append("g") //enter the data and append the actual "g"
+          .attr("class", "dayGraph") //update the class of the "g"
+          .attr("transform", function (d, i) {
+            return (
+              "translate(0," +
+              (i * ySpacing + (i == numGraphs - 1 ? bottomGraphOffest : 0)) +
+              ")"
+            );
+          })
+          .call(addDayGraphEdges) //add the edges for this dayGraph data
+          .call(addDayGraphNodes) //add the nodes for this dayGraph data
+          .call(addTextLabels);
+
+        timelineHeight = d3.select("#dayGraphsGroup").node().getBBox().height;
+
+        chartBbox = d3.select("#chartGroup").node().getBBox();
+        d3.select("#mainSvg")
+          .attr("height", chartBbox.height + chartBbox.y + 40)
+          .attr("width", chartBbox.width + chartBbox.x + 40);
+
+        // d3.select("#rawJsonTable").selectAll(".selectionToggle").on("click",toggleButtons)
+      }
+
+      function addTextLabels(selection) {
+        selection
+          .append("text")
+          .attr("class", "dayGraphText")
+          .text(function (d, i) {
+            if (d.recordsInGraph == 1) {
+              // var dat=d.graphData;
+              // return (dat.os+",  "+dat.geo+",  "+dat.channel+",  "+dat.version+",  "+dat.buildId);
+              return `Submission ${i + 1}`;
+            } else {
+              return "Merged submissions";
+            }
+          })
+          .each(function (d) {
+            textBBox = this.getBBox();
+            d.textWidth = textBBox.width;
+            d.textHeight = textBBox.height;
+          })
+          .attr("transform", function (d, i) {
+            return `translate(${
+              textAreaWidth - d.textWidth - 20
+            },${d.textHeight / 2 - 3})`;
+          });
+      }
+
+      function addDayGraphNodes(selection) {
+        selection
+          .selectAll("rect.dayGraphNode")
+          .data(function (d) {
+            return d["nodes"];
+          })
+          .enter()
+          .append("rect")
+          .filter(function (d) {
+            return (d.id != "top") & (d.id != "bottom");
+          })
+          .attr("class", "dayGraphNode")
+          .attr("x", function (d) {
+            return timeScale(isoToDate(d.date)) - dayTickWidth * 0.45 - 0.5;
+          })
+          .attr("width", function (d) {
+            return dayTickWidth * 0.9 + 1;
+          })
+          // .attr("width", dayGlyphH/2)
+          .attr("y", function (d) {
+            return divergeThreadSpacing * d.yOffset - dayGlyphH / 2;
+          })
+          .attr("height", dayGlyphH)
+          .attr("fill", function (d) {
+            return "#" + d.id.toString(16).substring(1, 7);
+          })
+          .on("click", dayClickFunction);
+      }
+
+      function addDayGraphEdges(selection) {
+        // .data(function(d){return d["edges"]}).enter() //attach data to that selection object
+        selection
+          .selectAll("path") //within the input selection, create a "path" selection
+          .data(edgesWithNodes)
+          .enter() //attach data to that selection object
+          .append("path") //append a path for each edge
+          .filter(function (d) {
+            return (d.source.id != "bottom") & (d.target.id != "top");
+          }) //skip paths starting from the "bottom" node or ending at the "top" node
+          .attr("d", graphEdgeDescString)
+          .attr("class", "dayGraphEdge")
+          .attr("stroke-width", 1); //function(d){return d.width})
+      }
+
+      function rescaleEdgeWidths(x, x_max, width_min, width_max) {
+        // this rescales edge widths to range between width_min and width_max px
+        if (x === 1) return width_min;
+
+        return (x / x_max) * (width_max - width_min) + width_min;
+      }
+
+      function edgesWithNodes(d) {
+        //given a data object with {nodes:[...] ,edges:[...] ,...}
+        //s.t. nodes have {id:,date:,yOffset:,...}
+        //and edges have {id: ,sourceId: ,targetId:, count:}
+        // return an array of edges like:
+        //     {source: nodeObj,
+        //      target: nodeObj,
+        //      width: , ...}
+        maxCount =
+          d["edges"].length > 0
+            ? d["edges"].map((e) => e.count).reduce((a, b) => Math.max(a, b))
+            : 0;
+        console.log(maxCount);
+
+        return d["edges"].map(function (e) {
+          return {
+            source: d["nodes"].filter(function (n) {
+              return n.id == e.sourceId;
+            })[0],
+            target: d["nodes"].filter(function (n) {
+              return n.id == e.targetId;
+            })[0],
+            width: rescaleEdgeWidths(e.count, maxCount, 1, 10),
+          };
+        });
+      }
+
+      function graphEdgeDescString(d) {
+        // input is an edge object with {source:nodeObj, target:nodeObj, width:}
+        dx =
+          timeScale(isoToDate(d.target.date)) -
+          timeScale(isoToDate(d.source.date));
+        dy =
+          d.target.yOffset * divergeThreadSpacing -
+          d.source.yOffset * divergeThreadSpacing;
+        return (
+          "M " +
+          timeScale(isoToDate(d.source.date)) +
+          " " +
+          d.source.yOffset * divergeThreadSpacing +
+          " c " +
+          dayTickWidth / 2 +
+          " 0" +
+          " , " +
+          dayTickWidth / 2 +
+          " " +
+          dy +
+          " , " +
+          dayTickWidth +
+          " " +
+          dy +
+          " l " +
+          (dx - dayTickWidth) +
+          " 0"
+        );
+      }
+
+      // var activeCol = 1
+      // function toggleButtons(d,i,context){
+      //   activeCol=this.id[9]
+      //   d3.select(this).classed("inactiveButton",false).text("Active column")
+
+      //   inactiveCol = (activeCol==1)? 2 : 1
+      //   d3.select("#buttonCol"+inactiveCol).classed("inactiveButton",true).text("Click to activate column")
+      // }
+
+      function dayClickFunction(d, i, context) {
+        console.log(this);
+        // activeColSelector = ".col"+activeCol
+
+        //remove the style from the currently active day rect
+        // activeRectSelector = ".clicked"+activeCol
+        // d3.selectAll("clicked1").classed("clicked1",false)
+        // add the style to the just clicked day rect
+        // d3.select(this).classed("clicked1",true)
+
+        // d3.select("#rawJsonTable").selectAll(activeColSelector)
+        //     .data(["dayGraph #"+ context +", "+d.date, JSON.stringify(d.data), d.currSessStr])
+        //     .text(function(d) { return d; })
+      }
+
+      function unixDayToIsoStr(dayNum) {
+        dt = new Date("1970-01-01");
+        dt.setTime(86400000 * dayNum);
+        return dt.toISOString().substring(0, 10);
+      }
+
+      $("#componentAccordion").accordion({
+        animate: 400,
+        heightStyle: "content",
+        // collapsible: true,
+        active: false,
+      });
+    </script>
+    <script type="text/javascript" src="js/fileDrop.js"></script>
+  </body>
+</html>
