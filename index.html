@@ -43,12 +43,25 @@
         grid-column-start: 2;
       }
 
-      .inner-grid-container {
+      #tabs {
+        display: grid;
+        grid-template-columns: 440px auto;
+        grid-gap: 37px;
+      }
+
+      /* .inner-grid-container {
         grid-template-columns: 300px 300px 300px;
+        grid-template-rows: auto;
+        display: grid;
+        margin: 0px;
+        margin-top: 15px;
+      } */
+      .inner-grid-container {
+        /* grid-template-columns: 300px 300px 300px; */
         grid-template-rows: auto;
         /* justify-items: center; */
         display: grid;
-        /* height:100%; */
+        /* height: 100%; */
         margin: 0px;
         margin-top: 15px;
       }
@@ -66,6 +79,7 @@
         font-weight: 500;
         font-variant: small-caps;
         margin-bottom: 0px;
+        margin-top: 0px;
         border-bottom: 1px solid #cccccc;
       }
 
@@ -136,8 +150,12 @@
         margin-top: 15px;
         padding: 0px;
 
-        grid-template-columns: 280px 280px 280px;
+        /* grid-template-columns: 280px 280px 280px;
         grid-template-rows: 160px 160px;
+        grid-gap: 30px; */
+
+        grid-template-columns: 200px 200px;
+        grid-template-rows: 160px 160px 160px;
         grid-gap: 30px;
       }
 
@@ -148,20 +166,26 @@
         /* grid-column-start: 1; */
       }
 
+      #tab-ul {
+        grid-column-start: 2;
+        grid-row-start: 1;
+      }
+
       .link-button-container {
         text-align: center;
         display: grid;
-        justify-items: center;
+        width: 100%;
+        /* justify-items: center;
 
         grid-column-start: 1;
         grid-column-end: 4;
 
-        padding-top: 20px;
+        padding-top: 20px; */
       }
       .link-button-container > a:hover {
         text-decoration: none;
       }
-      .link-button {
+      /* .link-button {
         background-color: #f8f8f8;
         color: #37a5ad;
         padding: 2px 30px;
@@ -170,8 +194,23 @@
         font-variant: small-caps;
         border-radius: 11px;
         border: 1px solid #cfcfcf;
+      } */
+      .link-button {
+        background-color: #f8f8f8;
+        color: #37a5ad;
+        padding: 2px 30px;
+        font-size: 15px;
+        font-weight: 700;
+        font-variant: small-caps;
+        /* border-radius: 0px; */
+        border: 1px solid #cfcfcf;
+        min-width: 100%;
+        text-align: center;
+        margin-top: 20px;
       }
-
+      .link-button:hover {
+        background-color: #eee;
+      }
       .description > p {
         margin-top: 14px;
       }
@@ -214,25 +253,25 @@
             of zooming out to clarify how quantitative understanding can solve
             real business problems; of identifying opportunities and
             implementing solutions that go beyond code and numbers when those
-            tools aren’t enough; and leading teams to solve big problems.
+            tools aren’t enough; and leading teams to solve big problems. As a
+            data storyteller, my specialty is leveraging my deep understanding
+            of data science to illuminate particularly complicated concepts
+            using a combination of prose and rich visuals.
           </p>
           <p>
-            For me, the ultimate objective of any visualization is impact.
-            Before I touch any pixels, I focus on understanding the needs of the
-            business, and then on understanding the data. focus is on presenting
-            data as clearly as possible so that the reader will come away with
-            actionable insights inform good decisions.
+            Please click on the images below to learn more about some of my
+            work.
           </p>
         </div>
       </div>
 
       <div id="tabs">
-        <ul class="tab-inner-grid-container">
+        <ul id="tab-ul" class="tab-inner-grid-container">
           <li>
             <a href="#tabs-iodide"
               ><img
                 src="screenshots/iodide_static.png"
-                style="position: relative; top: -57px; left: -5px; width: 103%"
+                style="position: relative; top: -28px; left: -5px; width: 204px"
               />
             </a>
           </li>
@@ -243,7 +282,7 @@
                 style="
                   height: 300px;
                   position: relative;
-                  left: -65px;
+                  left: -90px;
                   top: -43px;
                 "
             /></a>
@@ -300,7 +339,12 @@
 
         <div class="inner-grid-container" id="tabs-2">
           <div class="description">
-            <h4>PRODUCT USAGE DETAILS AND FORECAST</h4>
+            <h4>PRODUCT USAGE DASHBOARD</h4>
+            <div class="link-button-container">
+              <a href="adi/" target="_blank"
+                ><div class="link-button">OPEN IN NEW TAB</div></a
+              >
+            </div>
             <p>
               This is a recreation of a dashboard that was built to give
               decision makers clearer insight into the the long-term trends in
@@ -325,14 +369,16 @@
               <em>seven years</em>.
             </p>
           </div>
-          <div class="link-button-container">
-            <a href="adi/"><div class="link-button">VISIT</div></a>
-          </div>
         </div>
 
         <div id="tabs-3" class="inner-grid-container">
           <div class="description">
-            <h4>DO TECHNOLOGY "POWER USERS" DRIVE USAGE?</h4>
+            <h4>DO "POWER USERS" DRIVE USAGE?</h4>
+            <div class="link-button-container">
+              <a href="correlations/" target="_blank"
+                ><div class="link-button">OPEN IN NEW TAB</div></a
+              >
+            </div>
             <p>
               In 2016, Mozilla launched an organization-wide push to identify
               our most active users and to focus product development efforts on
@@ -354,14 +400,16 @@
               a well-founded set of proxy metrics for "heavy users".
             </p>
           </div>
-          <div class="link-button-container">
-            <a href="correlations/"><div class="link-button">VISIT</div></a>
-          </div>
         </div>
 
         <div id="tabs-4" class="inner-grid-container">
           <div class="description">
-            <h4>OVERVIEW OF DUPLICATES IN A KEY DATA SOURCE</h4>
+            <h4>DUPLICATES IN A KEY DATA SOURCE</h4>
+            <div class="link-button-container">
+              <a href="duplicates/" target="_blank"
+                ><div class="link-button">OPEN IN NEW TAB</div></a
+              >
+            </div>
             <p>
               In order to protect user privacy, Firefox's first major data
               collection effort relied on a complicated set of ID exchanges.
@@ -381,19 +429,20 @@
               forward where textual descriptions and summary statistics had not.
               This convinced the engineering team that the problem was real and
               demanded attention, leading to a major overhaul of this essential
-              data collection system and unblocking data science across the
+              data collection system which unblocked data science across the
               company.
             </p>
-          </div>
-
-          <div class="link-button-container">
-            <a href="duplicates/"><div class="link-button">VISIT</div></a>
           </div>
         </div>
 
         <div id="tabs-5" class="inner-grid-container">
           <div class="description">
-            <h4>A RICH PICTURE OF CATEGORICAL DATA</h4>
+            <h4>CROSSTABS IN IMAGES</h4>
+            <div class="link-button-container">
+              <a href="categorical.html" target="_blank"
+                ><div class="link-button">OPEN IN NEW TAB</div></a
+              >
+            </div>
             <p>
               Depicting the relationship between categorical variables can be
               tricky, and even more so if your story needs to show the level of
@@ -415,16 +464,18 @@
               the product direction.
             </p>
           </div>
-          <div class="link-button-container">
-            <a href="categorical.html"
-              ><div class="link-button">LEARN MORE</div></a
-            >
-          </div>
         </div>
 
         <div class="inner-grid-container" id="tabs-6">
           <div class="description">
-            <h4>UNDERSTANDING THE LORENZ ATTRACTOR</h4>
+            <h4>THE LORENZ ATTRACTOR</h4>
+            <div class="link-button-container">
+              <a
+                href="https://alpha.iodide.io/notebooks/34/?viewMode=report"
+                target="_blank"
+                ><div class="link-button">OPEN IN NEW TAB</div></a
+              >
+            </div>
             <p>
               Designed as a demonstration of the capabilities of the web and the
               Iodide IDE, this page depicts the well-known Lorenz Attractor from
@@ -444,16 +495,17 @@
               understanding of a mathematical topic.
             </p>
           </div>
-          <div class="link-button-container">
-            <a href="https://alpha.iodide.io/notebooks/34/?viewMode=report"
-              ><div class="link-button">VISIT</div></a
-            >
-          </div>
         </div>
 
         <div class="inner-grid-container" id="tabs-iodide">
           <div class="description">
             <h4>IODIDE</h4>
+
+            <div class="link-button-container">
+              <a href="https://alpha.iodide.io/" target="_blank"
+                ><div class="link-button">OPEN IN NEW TAB</div></a
+              >
+            </div>
             <p>
               Iodide is a tool designed to allow data scientists to tell rich,
               beautiful stories using the full power of the web technology stack
@@ -470,11 +522,6 @@
               active users, received several media mentions, and posts about our
               technology reached the top spot on Hacker News twice.
             </p>
-          </div>
-          <div class="link-button-container">
-            <a href="https://alpha.iodide.io/"
-              ><div class="link-button">VISIT</div></a
-            >
           </div>
         </div>
       </div>
